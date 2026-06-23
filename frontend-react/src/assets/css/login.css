@@ -1,0 +1,153 @@
+*{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:
+      linear-gradient(rgba(15,23,42,0.7), rgba(37,99,235,0.6)),
+      url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:1000px;
+      background:white;
+      border-radius:25px;
+      /* overflow:hidden; */
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    /* LEFT */
+
+    .left{
+      background:linear-gradient(135deg,#1e3a8a,#2563eb);
+      color:white;
+      padding:60px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .left h1{
+      font-size:42px;
+      margin-bottom:20px;
+    }
+
+    .left p{
+      line-height:1.8;
+      color:#dbeafe;
+    }
+
+    /* RIGHT */
+
+    .right{
+      padding:60px;
+    }
+
+    .right h2{
+      color:#1e3a8a;
+      margin-bottom:10px;
+      font-size:34px;
+    }
+
+    .right p{
+      color:#64748b;
+      margin-bottom:35px;
+    }
+
+    .input-box{
+      margin-bottom:25px;
+    }
+
+    .input-box label{
+      display:block;
+      margin-bottom:10px;
+      color:#334155;
+      font-weight:500;
+    }
+
+    .input-box input{
+      width:100%;
+      padding:15px;
+      border:1px solid #cbd5e1;
+      border-radius:12px;
+      outline:none;
+      font-size:15px;
+    }
+
+    .input-box input:focus{
+      border-color:#2563eb;
+    }
+
+    .forgot{
+      text-align:right;
+      margin-bottom:25px;
+    }
+
+    .forgot a{
+      text-decoration:none;
+      color:#2563eb;
+      font-size:14px;
+    }
+
+    .btn{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:#2563eb;
+      color:white;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#1d4ed8;
+    }
+
+    .bottom-text{
+      text-align:center;
+      margin-top:25px;
+      color:#64748b;
+    }
+
+    .bottom-text a{
+      color:#2563eb;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    @media(max-width:768px){
+
+      .container{
+        grid-template-columns:1fr;
+        margin:20px;
+      }
+
+      .left{
+        display:none;
+      }
+
+      .right{
+        padding:40px 30px;
+      }
+    }
+
+html,
+body,
+#root{
+    width:100%;
+}
+

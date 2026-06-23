@@ -1,0 +1,89 @@
+.edit-container{
+
+max-width:900px;
+
+margin:auto;
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.edit-container h1{
+
+margin-bottom:30px;
+
+color:#1e3a8a;
+
+}
+
+.edit-container form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.edit-container input,
+.edit-container select,
+.edit-container textarea{
+
+padding:14px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:15px;
+
+}
+
+.button-group{
+
+display:flex;
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+.button-group button{
+
+flex:1;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+
+.button-group button:first-child{
+
+background:#2563eb;
+
+color:white;
+
+}
+
+.button-group button:last-child{
+
+background:#ef4444;
+
+color:white;
+
+}

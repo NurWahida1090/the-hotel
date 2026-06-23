@@ -1,0 +1,359 @@
+
+*{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    html,
+    body,
+    #root{
+        width:100%;
+        min-height:100%;
+        margin:0;
+        padding:0;
+        /* overflow-x:hidden; */
+        background:#f5f7ff;
+        color:#1e293b;
+    }
+
+    body{
+        font-family:'Poppins',sans-serif;
+    }
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      height:80px;
+      padding:0 8%;
+      background:white;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:999;
+      box-shadow:0 2px 15px rgba(0,0,0,.08);
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:700;
+      color:#1e3a8a;
+    }
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:#334155;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#2563eb;
+    }
+
+    .nav-btn{
+      display:flex;
+      gap:15px;
+    }
+
+    .login{
+      padding:10px 22px;
+      border:2px solid #2563eb;
+      border-radius:10px;
+      color:#2563eb;
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    .register{
+      padding:10px 22px;
+      background:#2563eb;
+      border-radius:10px;
+      color:white;
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    /* HERO */
+
+    .hero{
+      width:100%;
+      background:
+      linear-gradient(rgba(15,23,42,0.7), rgba(37,99,235,0.6)),
+      url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:120px 8% 80px;
+      color:white;
+    }
+
+    .hero-content{
+      max-width:800px;
+    }
+
+    .hero h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:35px;
+    }
+
+    .hero-btn{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary{
+      padding:15px 30px;
+      background:#2563eb;
+      border-radius:12px;
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .btn-secondary{
+      padding:15px 30px;
+      border:2px solid white;
+      border-radius:12px;
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    /* SECTION */
+
+    section{
+      width:100%;
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      color:#1e3a8a;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#64748b;
+    }
+
+    /* ROOMS */
+
+    .room-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .room-card{
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .room-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .room-card img{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+    }
+
+    .room-content{
+      padding:25px;
+    }
+
+    .room-content h3{
+      margin-bottom:10px;
+      color:#1e3a8a;
+    }
+
+    .room-content p{
+      color:#64748b;
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+
+    .price{
+      font-weight:700;
+      color:#2563eb;
+      margin-bottom:20px;
+      display:block;
+    }
+
+    .card-btn{
+      display:inline-block;
+      padding:12px 24px;
+      background:#2563eb;
+      color:white;
+      border-radius:10px;
+      text-decoration:none;
+    }
+
+    /* FACILITIES */
+
+    .facility-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .facility-card{
+      background:white;
+      padding:40px 25px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .facility-card h3{
+      margin:20px 0 10px;
+      color:#1e3a8a;
+    }
+
+    .facility-card p{
+      color:#64748b;
+      line-height:1.7;
+    }
+
+    .icon{
+      font-size:50px;
+    }
+
+    /* ABOUT */
+
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:20px;
+    }
+
+    .about-content h2{
+      font-size:40px;
+      color:#1e3a8a;
+      margin-bottom:20px;
+    }
+
+    .about-content p{
+      line-height:1.9;
+      color:#64748b;
+      margin-bottom:25px;
+    }
+
+    /* REVIEW */
+
+    .review-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .review-card{
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .review-card p{
+      color:#64748b;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .review-card h4{
+      color:#1e3a8a;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#1e3a8a;
+      color:white;
+      text-align:center;
+      padding:40px 8%;
+    }
+
+    footer p{
+      margin-top:10px;
+      color:#dbeafe;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .section-title h2{
+        font-size:32px;
+      }
+    }
+  img{
+      max-width:100%;
+      display:block;
+  }
+
+  .room-card,
+  .facility-card,
+  .review-card{
+      width:100%;
+  }
+
+  .room-container,
+  .facility-container,
+  .review-container{
+      width:100%;
+  }
+
+  .about{
+      width:100%;
+  }
