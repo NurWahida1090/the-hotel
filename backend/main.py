@@ -1173,7 +1173,7 @@ def dashboard_admin(
                 db.query(User).count(),
 
             "total_kamar":
-                db.query(Kamar).count(),
+                db.query(Kamar).filter(Kamar.status == "Tersedia").count(),
 
             "total_fasilitas":
                 db.query(Fasilitas).count(),

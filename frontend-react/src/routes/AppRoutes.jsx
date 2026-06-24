@@ -16,6 +16,7 @@ import EditKamar from "../pages/EditKamar";
 import DataFasilitas from "../pages/DataFasilitas";
 import DataReservasi from "../pages/DataReservasi";
 import DataReview from "../pages/DataReview";
+import { ProtectedRoute, PublicRoute } from "../components/AuthRoutes";
 
 function AppRoutes() {
 
@@ -26,21 +27,27 @@ function AppRoutes() {
             <Routes>
 
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/kamar" element={<Kamar />} />
-                <Route path="/fasilitas" element={<Fasilitas />} />
-                <Route path="/reservasi" element={<Reservasi />} />
-                <Route path="/review" element={<Review />} />
-                <Route path="/checkin" element={<Checkin />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                <Route path="/admin/kamar" element={<DataKamar />} />
-                <Route path="/admin/kamar/edit/:id" element={<EditKamar />} />
-                <Route path="/admin/fasilitas" element={<DataFasilitas />} />
-                <Route path="/admin/reservasi" element={<DataReservasi />} />
-                <Route path="/admin/review" element={<DataReview />} />
+                
+                {/* Public Auth Routes */}
+                <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+                <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+                
+                {/* Guest / User Portal Routes */}
+                <Route path="/dashboard" element={<ProtectedRoute allowedRoles={["user"]}><Dashboard /></ProtectedRoute>} />
+                <Route path="/kamar" element={<ProtectedRoute allowedRoles={["user"]}><Kamar /></ProtectedRoute>} />
+                <Route path="/fasilitas" element={<ProtectedRoute allowedRoles={["user"]}><Fasilitas /></ProtectedRoute>} />
+                <Route path="/reservasi" element={<ProtectedRoute allowedRoles={["user"]}><Reservasi /></ProtectedRoute>} />
+                <Route path="/review" element={<ProtectedRoute allowedRoles={["user"]}><Review /></ProtectedRoute>} />
+                <Route path="/checkin" element={<ProtectedRoute allowedRoles={["user"]}><Checkin /></ProtectedRoute>} />
+                <Route path="/checkout" element={<ProtectedRoute allowedRoles={["user"]}><Checkout /></ProtectedRoute>} />
+                
+                {/* Admin Portal Routes */}
+                <Route path="/admin/dashboard" element={<ProtectedRoute allowedRoles={["admin"]}><AdminDashboard /></ProtectedRoute>} />
+                <Route path="/admin/kamar" element={<ProtectedRoute allowedRoles={["admin"]}><DataKamar /></ProtectedRoute>} />
+                <Route path="/admin/kamar/edit/:id" element={<ProtectedRoute allowedRoles={["admin"]}><EditKamar /></ProtectedRoute>} />
+                <Route path="/admin/fasilitas" element={<ProtectedRoute allowedRoles={["admin"]}><DataFasilitas /></ProtectedRoute>} />
+                <Route path="/admin/reservasi" element={<ProtectedRoute allowedRoles={["admin"]}><DataReservasi /></ProtectedRoute>} />
+                <Route path="/admin/review" element={<ProtectedRoute allowedRoles={["admin"]}><DataReview /></ProtectedRoute>} />
 
             </Routes>
 

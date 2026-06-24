@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import GuestLayout from "../layouts/GuestLayout";
-import { getRooms } from "../services/homeService";
+import { getKamar } from "../services/kamarService";
 import { createReservation } from "../services/reservationService";
 
 function Kamar() {
@@ -27,7 +27,7 @@ function Kamar() {
     useEffect(() => {
         const fetchRooms = async () => {
             try {
-                const data = await getRooms();
+                const data = await getKamar();
                 setRooms(data || []);
             } catch {
                 showToast("Gagal memuat data kamar", "error");

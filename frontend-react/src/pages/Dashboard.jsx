@@ -4,7 +4,7 @@ import { FiClipboard, FiClock, FiCheckCircle, FiStar, FiInbox } from "react-icon
 import GuestLayout from "../layouts/GuestLayout";
 import { getMyReservations } from "../services/reservationService";
 import { getMyReviews } from "../services/reviewService";
-import { getRooms } from "../services/homeService";
+import { getKamar } from "../services/kamarService";
 
 const STATUS_MAP = {
     Pending:   { cls: "status-pending",   label: "Pending"   },
@@ -29,7 +29,7 @@ function Dashboard() {
                 const [res, rev, rm] = await Promise.all([
                     getMyReservations(),
                     getMyReviews(),
-                    getRooms(),
+                    getKamar(),
                 ]);
                 setReservations(res || []);
                 setReviews(rev || []);
@@ -182,7 +182,7 @@ function Dashboard() {
                         <div className="loading-spinner"><div className="spinner" /></div>
                     ) : (
                         <div className="room-grid">
-                            {rooms.filter(r => r.status === "Tersedia").slice(0, 3).map(room => (
+                            {rooms.filter(r => r.status === "Tersedia").slice(0, 4).map(room => (
                                 <div key={room.id_kamar} className="room-card-guest">
                                     <div className="room-card-image">
                                         <img

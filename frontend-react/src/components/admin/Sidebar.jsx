@@ -1,8 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiTrendingUp, FiCalendar, FiDatabase, FiAward, FiStar, FiLogOut } from "react-icons/fi";
 
 function Sidebar() {
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/");
+    };
     
     return (
         <div className="sidebar">
@@ -46,7 +53,7 @@ function Sidebar() {
                     <span className="nav-icon"><FiStar /></span> Data Review
                 </Link>
                 
-                <Link to="/" style={{marginTop: "40px", color: "#fca5a5"}}>
+                 <Link to="#" onClick={handleLogout} style={{marginTop: "40px", color: "#fca5a5"}}>
                     <span className="nav-icon"><FiLogOut /></span> Logout
                 </Link>
             </div>

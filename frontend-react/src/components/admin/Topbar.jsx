@@ -100,7 +100,7 @@ function Topbar() {
                 >
                     <div className="profile-info" style={{ textAlign: "right" }}>
                         <h4>{user.username || "Admin Hotel"}</h4>
-                        <small>Administrator</small>
+                        <small>{user.role === 'admin' ? 'Administrator' : (user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'Administrator')}</small>
                     </div>
                     <div style={{
                         width: "44px", height: "44px", borderRadius: "50%", 

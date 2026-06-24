@@ -27,13 +27,15 @@ Aplikasi manajemen hotel berbasis web yang memungkinkan tamu melihat informasi k
 - Melihat & mengelola reservasi pribadi
 - Memberikan ulasan dan rating untuk kamar
 - Proses check-in & check-out
+- **Keamanan Halaman & Route (Proteksi halaman tamu dengan auto-redirect ke login)**
 
 ### 🛠️ Admin
-- Dashboard statistik (jumlah kamar, reservasi, tamu, ulasan)
+- Dashboard statistik (kamar tersedia riil dari database, total reservasi, tamu, ulasan)
 - Manajemen data kamar (tambah, edit, hapus, upload gambar)
 - Manajemen data fasilitas
 - Manajemen semua reservasi (ubah status, hapus)
 - Moderasi ulasan tamu
+- **Keamanan Akses Panel Admin (Hanya dapat diakses oleh user ber-role admin)**
 
 ---
 
@@ -306,14 +308,14 @@ Base URL: `http://localhost:8000`
 | Fitur | Tamu (Belum Login) | User | Admin |
 |-------|--------------------|------|-------|
 | Lihat beranda & kamar | ✅ | ✅ | ✅ |
-| Login & Register | ✅ | — | — |
-| Buat reservasi | ❌ | ✅ | ✅ |
-| Tulis review | ❌ | ✅ | ✅ |
-| Kelola data kamar | ❌ | ❌ | ✅ |
-| Kelola fasilitas | ❌ | ❌ | ✅ |
-| Proses check-in/out | ❌ | ❌ | ✅ |
-| Lihat semua reservasi | ❌ | ❌ | ✅ |
-| Dashboard admin | ❌ | ❌ | ✅ |
+| Login & Register | ✅ | — (Redirect ke Dashboard) | — (Redirect ke Dashboard) |
+| Buat reservasi | ❌ (Redirect ke Login) | ✅ | ✅ |
+| Tulis review | ❌ (Redirect ke Login) | ✅ | ✅ |
+| Kelola data kamar | ❌ (Redirect ke Login) | ❌ (Redirect ke Dashboard) | ✅ |
+| Kelola fasilitas | ❌ (Redirect ke Login) | ❌ (Redirect ke Dashboard) | ✅ |
+| Proses check-in/out | ❌ (Redirect ke Login) | ❌ (Redirect ke Dashboard) | ✅ |
+| Lihat semua reservasi | ❌ (Redirect ke Login) | ❌ (Redirect ke Dashboard) | ✅ |
+| Dashboard admin | ❌ (Redirect ke Login) | ❌ (Redirect ke Dashboard) | ✅ |
 
 ---
 
