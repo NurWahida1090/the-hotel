@@ -18,7 +18,7 @@ function Navbar() {
     }, []);
 
     return (
-        <nav className={scrolled ? "scrolled" : ""}>
+        <nav className={`home-nav ${scrolled ? "scrolled" : ""}`}>
             <div className="logo">
                 The Hotel
             </div>
