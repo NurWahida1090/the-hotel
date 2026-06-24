@@ -32,6 +32,15 @@ export const getAllReservations = async () => {
 
 // Admin: Update status of a reservation
 export const updateReservationStatus = async (id, status) => {
-    const res = await api.put(`/reservasi/status/${id}`, { status_reservasi: status }, authHeader());
-    return res.data;
+    if (status === "Check In") {
+        const res = await api.post("/checkin", { id_reservasi: id }, authHeader());
+        return res.data;
+    } else if (status === "Selesai") {
+        const res = await api.post("/checkout", { id_reservasi: id }, authHeader());
+        return res.data;
+    } else {
+        const res = await api.put(`/reservasi/status/${id}`, { status_reservasi: status }, authHeader());
+        return res.data;
+    }
 };
+
