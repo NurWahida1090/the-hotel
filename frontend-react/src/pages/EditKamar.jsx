@@ -41,10 +41,6 @@ deskripsi:""
 
 useEffect(()=>{
 
-load();
-
-},[]);
-
 const load=async()=>{
 
 const data=await getKamarById(id);
@@ -52,6 +48,10 @@ const data=await getKamarById(id);
 setForm(data);
 
 };
+
+load();
+
+},[id]);
 
 const simpan=async(e)=>{
 

@@ -1,50 +1,26 @@
-import { Link } from "react-router-dom";
-
 function AboutSection() {
     return (
-        <section id="about">
-
-            <div className="about">
-
+        <section id="about" className="about">
+            <div className="about-img-wrap reveal">
                 <img
-                    src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1470&auto=format&fit=crop"
-                    alt=""
+                    src="/17de8ce3d57e2fd000582d262bf9d841d4276f61.jpg"
+                    alt="Luxury Hotel Exterior"
                 />
-
-                <div className="about-content">
-
-                    <h2>
-
-                        Welcome To The Hotel
-
-                    </h2>
-
-                    <p>
-
-                        The Hotel merupakan hotel modern yang menghadirkan kenyamanan,
-                        kemewahan,
-                        dan pelayanan terbaik untuk setiap tamu.
-
-                    </p>
-
-                    <p>
-
-                        Dengan fasilitas lengkap serta suasana nyaman,
-                        The Hotel menjadi pilihan terbaik.
-
-                    </p>
-
-                    <Link
-                        to="/login"
-                        className="btn-primary"
-                    >
-                        Reservasi Sekarang
-                    </Link>
-
-                </div>
-
             </div>
-
+            <div className="about-content reveal" style={{ animationDelay: "0.2s" }}>
+                <h4>Tentang Kami</h4>
+                <h2>Definisi Baru Sebuah Kemewahan</h2>
+                <p>
+                    Berdiri sejak 2010, The Hotel telah menjadi ikon standar pelayanan 
+                    perhotelan terbaik. Kami menggabungkan arsitektur klasik dengan 
+                    fasilitas modern yang dirancang khusus untuk memanjakan Anda.
+                </p>
+                <p>
+                    Setiap detail mulai dari penyambutan di lobi hingga kualitas sprei 
+                    kamar Anda telah kami perhatikan dengan seksama. Misi kami adalah 
+                    menciptakan sebuah kenangan manis yang akan selalu Anda ingat.
+                </p>
+            </div>
         </section>
     );
 }

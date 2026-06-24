@@ -16,7 +16,7 @@ VALUES
 (
 'admin',
 'admin@gmail.com',
-'admin123',
+'$2b$12$/QcOF8XQbJzh3g18L8jj7.S890NIiC/h5s5PImMK3dvebUaqrCQbK',
 'admin'
 );
 
@@ -41,7 +41,8 @@ CREATE TABLE kamar (
 CREATE TABLE fasilitas (
     id_fasilitas INT AUTO_INCREMENT PRIMARY KEY,
     nama_fasilitas VARCHAR(100) NOT NULL,
-    deskripsi TEXT
+    deskripsi TEXT,
+    gambar VARCHAR(255)
 );
 
 CREATE TABLE reservasi (

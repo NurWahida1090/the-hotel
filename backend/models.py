@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy import DateTime, Text, Enum, DECIMAL
 from sqlalchemy.orm import relationship
 from database import Base
-from datetime import datetime
+from datetime import datetime, timezone
 
 # ================= USER =================
 class User(Base):
@@ -135,7 +135,7 @@ class Checkin(Base):
 
     waktu_checkin = Column(
         DateTime,
-        default=datetime.utcnow
+        default=lambda: datetime.now(timezone.utc)
     )
 
 
@@ -152,5 +152,5 @@ class Checkout(Base):
 
     waktu_checkout = Column(
         DateTime,
-        default=datetime.utcnow
+        default=lambda: datetime.now(timezone.utc)
     )

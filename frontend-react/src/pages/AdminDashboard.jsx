@@ -8,10 +8,6 @@ import Sidebar from "../components/admin/Sidebar";
 import Topbar from "../components/admin/Topbar";
 import HeroAdmin from "../components/admin/HeroAdmin";
 import StatisticCard from "../components/admin/StatisticCard";
-import ReservasiTable from "../components/admin/ReservasiTable";
-import RoomAdmin from "../components/admin/RoomAdmin";
-import FacilityAdmin from "../components/admin/FacilityAdmin";
-import ReviewAdmin from "../components/admin/ReviewAdmin";
 
 function AdminDashboard() {
 
@@ -30,19 +26,17 @@ function AdminDashboard() {
     });
 
     useEffect(() => {
+        const loadDashboard = async () => {
+
+            const data =
+                await getDashboard();
+
+            setDashboard(data);
+
+        };
 
         loadDashboard();
-
     }, []);
-
-    const loadDashboard = async () => {
-
-        const data =
-            await getDashboard();
-
-        setDashboard(data);
-
-    };
 
     return (
         <>

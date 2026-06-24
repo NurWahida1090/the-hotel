@@ -7,13 +7,16 @@ from database import engine, get_db
 from models import *
 from schemas import *
 from jose import jwt, JWTError
-from passlib.context import CryptContext
 from datetime import datetime, timedelta
+from auth import hash_password, verify_password, create_access_token, SECRET_KEY, ALGORITHM
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -24,48 +27,10 @@ app.mount(
     name="static"
 )
 Base.metadata.create_all(bind=engine)
-SECRET_KEY = "THE_HOTEL_SECRET_2026"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
-
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="login"
 )
-
-def hash_password(password):
-    return pwd_context.hash(password)
-
-def verify_password(
-    plain_password,
-    hashed_password
-):
-    return pwd_context.verify(
-        plain_password,
-        hashed_password
-    )
-
-def create_access_token(data: dict):
-
-    to_encode = data.copy()
-
-    expire = datetime.utcnow() + timedelta(
-        minutes=60
-    )
-
-    to_encode.update(
-        {"exp": expire}
-    )
-
-    return jwt.encode(
-        to_encode,
-        SECRET_KEY,
-        algorithm=ALGORITHM
-    )
 
 # ================= USER =================
 def get_current_user(
@@ -163,6 +128,11 @@ def login(
     user = db.query(User).filter(
         User.username == form_data.username
     ).first()
+
+    if not user:
+        user = db.query(User).filter(
+            User.email == form_data.username
+        ).first()
 
     if not user:
         raise HTTPException(
@@ -312,23 +282,6 @@ def get_kamar(
 ):
     return db.query(Kamar).all()
 
-@app.get("/kamar/{id}")
-def detail_kamar(
-    id: int,
-    db: Session = Depends(get_db)
-):
-    kamar = db.query(Kamar).filter(
-        Kamar.id_kamar == id
-    ).first()
-
-    if not kamar:
-        raise HTTPException(
-            status_code=404,
-            detail="Kamar tidak ditemukan"
-        )
-
-    return kamar
-
 @app.get("/kamar/home")
 def kamar_home(db: Session = Depends(get_db)):
 
@@ -351,6 +304,23 @@ def kamar_home(db: Session = Depends(get_db)):
             hasil.append(kamar)
 
     return hasil
+
+@app.get("/kamar/{id}")
+def detail_kamar(
+    id: int,
+    db: Session = Depends(get_db)
+):
+    kamar = db.query(Kamar).filter(
+        Kamar.id_kamar == id
+    ).first()
+
+    if not kamar:
+        raise HTTPException(
+            status_code=404,
+            detail="Kamar tidak ditemukan"
+        )
+
+    return kamar
 
 @app.post("/kamar")
 def tambah_kamar(
@@ -552,10 +522,17 @@ def tambah_reservasi(
             detail="Kamar tidak ditemukan"
         )
 
+    if kamar.status == "Maintenance":
+        raise HTTPException(
+            status_code=400,
+            detail="Kamar sedang dalam masa pemeliharaan (maintenance)"
+        )
+
     bentrok = db.query(Reservasi).filter(
         Reservasi.id_kamar == data.id_kamar,
         Reservasi.tanggal_checkin <= data.tanggal_checkout,
-        Reservasi.tanggal_checkout >= data.tanggal_checkin
+        Reservasi.tanggal_checkout >= data.tanggal_checkin,
+        ~Reservasi.status_reservasi.in_(["Batal", "Ditolak", "Selesai"])
     ).first()
 
     if bentrok:
@@ -573,8 +550,6 @@ def tambah_reservasi(
     )
 
     db.add(reservasi)
-
-    kamar.status = "Terisi"
 
     db.commit()
     db.refresh(reservasi)
@@ -732,13 +707,14 @@ def tambah_review(
 
     reservasi = db.query(Reservasi).filter(
         Reservasi.id_user == current_user.id_user,
-        Reservasi.id_kamar == data.id_kamar
+        Reservasi.id_kamar == data.id_kamar,
+        Reservasi.status_reservasi == "Selesai"
     ).first()
 
     if not reservasi:
         raise HTTPException(
             status_code=400,
-            detail="Anda belum pernah memesan kamar ini"
+            detail="Anda belum pernah menyelesaikan proses menginap di kamar ini"
         )
 
     review_lama = db.query(Review).filter(
@@ -789,8 +765,6 @@ def update_review(
             detail="Bukan review anda"
         )
 
-    review.rating = data.rating
-    review.komentar = data.komentar
     review.rating = data.rating
     review.komentar = data.komentar
 
@@ -890,6 +864,11 @@ def checkin(
 
     reservasi.status_reservasi = "Check In"
 
+    # Set room status to occupied during check-in
+    kamar = db.query(Kamar).filter(Kamar.id_kamar == reservasi.id_kamar).first()
+    if kamar:
+        kamar.status = "Terisi"
+
     db.commit()
     db.refresh(item)
 
@@ -911,6 +890,14 @@ def delete_checkin(
             status_code=404,
             detail="Checkin tidak ditemukan"
         )
+
+    # Rollback reservation and room status when check-in record is deleted
+    reservasi = db.query(Reservasi).filter(Reservasi.id_reservasi == item.id_reservasi).first()
+    if reservasi:
+        reservasi.status_reservasi = "Pending"
+        kamar = db.query(Kamar).filter(Kamar.id_kamar == reservasi.id_kamar).first()
+        if kamar:
+            kamar.status = "Tersedia"
 
     db.delete(item)
     db.commit()

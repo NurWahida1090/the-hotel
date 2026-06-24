@@ -7,26 +7,25 @@ function RoomSection() {
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
+        const loadRooms = async () => {
+
+            try {
+
+                const data = await getRooms();
+
+                setRooms(data);
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+
+        };
 
         loadRooms();
 
     }, []);
-
-    const loadRooms = async () => {
-
-        try {
-
-            const data = await getRooms();
-
-            setRooms(data);
-
-        } catch (error) {
-
-            console.log(error);
-
-        }
-
-    };
 
     return (
 

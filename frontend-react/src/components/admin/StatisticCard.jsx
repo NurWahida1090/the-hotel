@@ -1,61 +1,22 @@
 function StatisticCard({ statistik }) {
+    const stats = [
+        { label: "Total Reservasi", value: statistik.total_reservasi || 0, icon: "📋" },
+        { label: "Kamar Tersedia", value: statistik.total_kamar || 0, icon: "🛏️" },
+        { label: "Fasilitas Hotel", value: statistik.total_fasilitas || 0, icon: "✨" },
+        { label: "Ulasan Tamu", value: statistik.total_review || 0, icon: "⭐" },
+    ];
 
     return (
-
         <div className="card-container">
-
-            <div className="card">
-
-                <h3>Total Reservasi</h3>
-
-                <h1>
-
-                    {statistik.total_reservasi}
-
-                </h1>
-
-            </div>
-
-            <div className="card">
-
-                <h3>Total Kamar</h3>
-
-                <h1>
-
-                    {statistik.total_kamar}
-
-                </h1>
-
-            </div>
-
-            <div className="card">
-
-                <h3>Total Fasilitas</h3>
-
-                <h1>
-
-                    {statistik.total_fasilitas}
-
-                </h1>
-
-            </div>
-
-            <div className="card">
-
-                <h3>Total Review</h3>
-
-                <h1>
-
-                    {statistik.total_review}
-
-                </h1>
-
-            </div>
-
+            {stats.map((stat, index) => (
+                <div key={index} className="card">
+                    <div className="card-icon">{stat.icon}</div>
+                    <h3>{stat.label}</h3>
+                    <h1>{stat.value}</h1>
+                </div>
+            ))}
         </div>
-
     );
-
 }
 
 export default StatisticCard;

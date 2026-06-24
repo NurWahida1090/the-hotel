@@ -1,9 +1,27 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <nav>
-            <div className="logo">The Hotel</div>
+        <nav className={scrolled ? "scrolled" : ""}>
+            <div className="logo">
+                The Hotel
+            </div>
 
             <ul>
                 <li><a href="#hero">Home</a></li>
@@ -15,11 +33,11 @@ function Navbar() {
 
             <div className="nav-btn">
                 <Link className="login" to="/login">
-                    Login
+                    Masuk
                 </Link>
 
                 <Link className="register" to="/register">
-                    Register
+                    Daftar
                 </Link>
             </div>
         </nav>
