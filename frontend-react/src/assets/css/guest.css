@@ -1313,3 +1313,145 @@ html, body, #root {
     margin-right: 2px;
     font-size: 14px;
 }
+
+/* ============ MY RESERVATIONS CARDS ============ */
+.reservations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.reservation-card-item {
+    display: flex;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.reservation-card-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.reservation-image-wrapper {
+    width: 280px;
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.reservation-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reservation-details-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 24px;
+}
+
+.reservation-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.reservation-header-row h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 0;
+}
+
+.reservation-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.info-block {
+    background: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.reservation-actions-row {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-card-detail {
+    padding: 8px 24px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-card-detail:hover {
+    background: #1d4ed8;
+}
+
+.btn-card-review {
+    padding: 8px 24px;
+    background: #e2e8f0;
+    color: #475569;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-card-review:hover {
+    background: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+    .reservation-card-item {
+        flex-direction: column;
+    }
+    .reservation-image-wrapper {
+        width: 100%;
+        height: 200px;
+    }
+    .reservation-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .reservation-info-grid {
+        grid-template-columns: 1fr;
+    }
+}

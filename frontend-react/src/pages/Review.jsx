@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import GuestLayout from "../layouts/GuestLayout";
 import { getMyReviews, createReview, deleteReview } from "../services/reviewService";
 
@@ -27,6 +28,7 @@ function StarRating({ value, onChange }) {
 }
 
 function Review() {
+    const location = useLocation();
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -36,6 +38,15 @@ function Review() {
     const [submitting, setSubmitting] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(null);
     const [toast, setToast] = useState(null);
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const qRoomId = queryParams.get("room") || location.state?.roomId;
+        if (qRoomId) {
+            setIdKamar(qRoomId);
+            setShowForm(true);
+        }
+    }, [location]);
 
     const showToast = useCallback((msg, type = "success") => {
         setToast({ msg, type });
