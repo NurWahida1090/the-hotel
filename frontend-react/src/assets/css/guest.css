@@ -1455,3 +1455,98 @@ html, body, #root {
         grid-template-columns: 1fr;
     }
 }
+
+/* ============ ROOM CARDS REDESIGN (DAFTAR KAMAR) ============ */
+.room-card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.room-card-header-row h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.room-status-badge-inline {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.room-status-badge-inline.badge-available {
+    background: #e6fbf2;
+    color: #10b981;
+}
+
+.room-status-badge-inline.badge-occupied {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.room-status-badge-inline.badge-maintenance {
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.room-facilities-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.facility-tag {
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.room-price-guest {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 16px;
+}
+
+.room-price-guest .price-unit {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.btn-reserve-kamar {
+    display: block;
+    width: 60%;
+    margin: 16px auto 0 auto;
+    text-align: center;
+    padding: 10px 24px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+}
+
+.btn-reserve-kamar:hover {
+    background: #1d4ed8;
+}
+
+.btn-reserve-kamar.disabled,
+.btn-reserve-kamar:disabled {
+    background: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+}

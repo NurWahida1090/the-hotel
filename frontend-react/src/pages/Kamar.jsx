@@ -3,6 +3,20 @@ import GuestLayout from "../layouts/GuestLayout";
 import { getKamar } from "../services/kamarService";
 import { createReservation } from "../services/reservationService";
 
+const getRoomFacilities = (tipe) => {
+    const type = tipe ? tipe.toLowerCase() : "";
+    if (type.includes("deluxe")) {
+        return ["WiFi", "AC", "TV", "Sarapan"];
+    }
+    if (type.includes("family")) {
+        return ["WiFi", "2 Bed", "TV", "Bathtub"];
+    }
+    if (type.includes("suite")) {
+        return ["WiFi", "Mini Bar", "Jacuzzi", "Living Room"];
+    }
+    return ["WiFi"];
+};
+
 function Kamar() {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -78,12 +92,6 @@ function Kamar() {
         }
     };
 
-    const getStatusBadge = (status) => {
-        if (status === "Tersedia") return "badge-available";
-        if (status === "Terisi") return "badge-occupied";
-        return "badge-maintenance";
-    };
-
     const filtered = rooms.filter(r => {
         const matchFilter = filter === "semua" || r.status === filter;
         const matchSearch = r.tipe_kamar.toLowerCase().includes(search.toLowerCase()) ||
@@ -96,33 +104,11 @@ function Kamar() {
     return (
         <GuestLayout>
             {/* Page Header */}
-            <div className="page-header">
-                <h1>Pilih Kamar Anda</h1>
-                <p>Temukan kamar yang paling sesuai dengan kebutuhan Anda</p>
-            </div>
-
-            {/* Filter Bar */}
-            <div className="filter-bar">
-                <div className="search-input-wrap">
-                    <span className="search-icon">🔍</span>
-                    <input
-                        type="text"
-                        className="search-input"
-                        placeholder="Cari tipe kamar..."
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                    />
-                </div>
-                <select
-                    className="filter-select"
-                    value={filter}
-                    onChange={e => setFilter(e.target.value)}
-                >
-                    <option value="semua">Semua Kamar</option>
-                    <option value="Tersedia">Tersedia</option>
-                    <option value="Terisi">Terisi</option>
-                    <option value="Maintenance">Maintenance</option>
-                </select>
+            <div className="page-header" style={{ marginBottom: "28px" }}>
+                <h1 style={{ fontSize: "24px", fontWeight: "700", color: "#1e3a8a" }}>Pilih Kamar Terbaik Anda</h1>
+                <p style={{ fontSize: "14px", color: "#64748b", marginTop: "4px" }}>
+                    Temukan berbagai tipe kamar dengan fasilitas lengkap dan harga terbaik hanya di The Hotel.
+                </p>
             </div>
 
             {/* Room Grid */}
@@ -132,7 +118,7 @@ function Kamar() {
                 <div className="empty-state">
                     <div className="empty-icon">🛏️</div>
                     <h3>Tidak Ada Kamar</h3>
-                    <p>Tidak ada kamar yang sesuai dengan pencarian Anda saat ini.</p>
+                    <p>Tidak ada kamar yang tersedia saat ini.</p>
                 </div>
             ) : (
                 <div className="room-grid">
@@ -146,23 +132,33 @@ function Kamar() {
                                         e.target.src = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400";
                                     }}
                                 />
-                                <span className={`room-status-badge ${getStatusBadge(room.status)}`}>
-                                    {room.status}
-                                </span>
                             </div>
                             <div className="room-card-body">
-                                <h3>{room.tipe_kamar}</h3>
-                                <p>{room.deskripsi || "Kamar nyaman dengan fasilitas lengkap."}</p>
-                                <div className="room-price">
-                                    Rp {Number(room.harga).toLocaleString("id-ID")}
-                                    <span> / malam</span>
+                                <div className="room-card-header-row">
+                                    <h3>{room.tipe_kamar}</h3>
+                                    <span className={`room-status-badge-inline ${room.status === "Tersedia" ? "badge-available" : room.status === "Terisi" ? "badge-occupied" : "badge-maintenance"}`}>
+                                        {room.status}
+                                    </span>
                                 </div>
+                                <p>{room.deskripsi || "Kamar nyaman dengan fasilitas lengkap."}</p>
+                                
+                                {/* Room Facilities */}
+                                <div className="room-facilities-tags">
+                                    {getRoomFacilities(room.tipe_kamar).map((fac, idx) => (
+                                        <span key={idx} className="facility-tag">{fac}</span>
+                                    ))}
+                                </div>
+
+                                <div className="room-price-guest">
+                                    Rp {Number(room.harga).toLocaleString("id-ID")} <span className="price-unit">/ malam</span>
+                                </div>
+                                
                                 <button
-                                    className={`btn-reserve ${room.status !== "Tersedia" ? "disabled" : ""}`}
+                                    className={`btn-reserve-kamar ${room.status !== "Tersedia" ? "disabled" : ""}`}
                                     onClick={() => room.status === "Tersedia" && openModal(room)}
                                     disabled={room.status !== "Tersedia"}
                                 >
-                                    {room.status === "Tersedia" ? "Reservasi Sekarang" :
+                                    {room.status === "Tersedia" ? "Booking" :
                                      room.status === "Terisi" ? "Sedang Terisi" : "Dalam Perbaikan"}
                                 </button>
                             </div>
@@ -207,7 +203,6 @@ function Kamar() {
                                         required
                                     />
                                 </div>
-
                                 <div className="form-group">
                                     <label className="form-label">Tanggal Check Out</label>
                                     <input
@@ -219,29 +214,13 @@ function Kamar() {
                                         required
                                     />
                                 </div>
-
-                                {checkin && checkout && new Date(checkout) > new Date(checkin) && (
-                                    <div style={{
-                                        background: "#f0f9ff",
-                                        border: "1px solid #bae6fd",
-                                        borderRadius: 8,
-                                        padding: "12px 16px",
-                                        fontSize: 13,
-                                        color: "#0369a1"
-                                    }}>
-                                        <strong>Durasi:</strong>{" "}
-                                        {Math.round((new Date(checkout) - new Date(checkin)) / 86400000)} malam ·{" "}
-                                        <strong>Total Estimasi:</strong>{" "}
-                                        Rp {(Number(selectedRoom.harga) * Math.round((new Date(checkout) - new Date(checkin)) / 86400000)).toLocaleString("id-ID")}
-                                    </div>
-                                )}
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn-cancel" onClick={closeModal}>
                                     Batal
                                 </button>
                                 <button type="submit" className="btn-submit" disabled={submitting}>
-                                    {submitting ? "Memproses..." : "Konfirmasi Reservasi"}
+                                    {submitting ? "Memproses..." : "Konfirmasi Booking"}
                                 </button>
                             </div>
                         </form>
@@ -249,7 +228,6 @@ function Kamar() {
                 </div>
             )}
 
-            {/* Toast */}
             {toast && (
                 <div className={`toast ${toast.type === "error" ? "error" : ""}`}>
                     {toast.type === "error" ? "❌" : "✅"} {toast.msg}
