@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { updateProfile } from "../../services/authService";
 
 const pageMeta = {
@@ -125,7 +126,7 @@ function GuestTopbar() {
             </div>
 
             {/* Edit Profile Modal */}
-            {modalOpen && (
+            {modalOpen && createPortal(
                 <div className="modal-overlay">
                     <div className="modal-box">
                         <div className="modal-header">
@@ -179,7 +180,8 @@ function GuestTopbar() {
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </header>
     );
