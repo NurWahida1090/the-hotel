@@ -27,7 +27,7 @@ function GuestSidebar() {
                 <div className="brand-logo">
                     <div className="brand-text">
                         <span>The Hotel</span>
-                        <span>Guest Portal</span>
+                        <span>{user.role ? `${user.role} Portal` : "Guest Portal"}</span>
                     </div>
                 </div>
             </div>
