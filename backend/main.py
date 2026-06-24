@@ -101,6 +101,16 @@ def register(
             detail="Username sudah ada"
         )
 
+    cek_email = db.query(User).filter(
+        User.email == data.email
+    ).first()
+
+    if cek_email:
+        raise HTTPException(
+            status_code=400,
+            detail="Email sudah terdaftar"
+        )
+
     user = User(
         username=data.username,
         email=data.email,

@@ -37,10 +37,21 @@ function Register() {
     return (
         <div className="register-page">
             <div className="container">
-                {/* LEFT - Form */}
+                {/* LEFT - Decorative */}
                 <div className="left">
-                    <div className="left-logo">The Hotel · Buat Akun</div>
-                    <h2>Daftar Sekarang</h2>
+                    <div className="left-inner">
+                        <h1>Welcome !</h1>
+                        <p>
+                            Daftar sekarang untuk menikmati kemudahan
+                            reservasi hotel premium, pelayanan prima,
+                            dan pengalaman menginap tak terlupakan.
+                        </p>
+                    </div>
+                </div>
+
+                {/* RIGHT - Form */}
+                <div className="right">
+                    <h2>Register</h2>
                     <p>Buat akun gratis dan mulai reservasi kamar impian Anda</p>
 
                     <form onSubmit={handleRegister}>
@@ -48,7 +59,7 @@ function Register() {
                             <label>Username</label>
                             <input
                                 type="text"
-                                placeholder="Buat username unik..."
+                                placeholder="Masukkan username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
@@ -59,7 +70,7 @@ function Register() {
                             <label>Email</label>
                             <input
                                 type="email"
-                                placeholder="Alamat email Anda..."
+                                placeholder="Masukkan email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -70,18 +81,18 @@ function Register() {
                             <label>Password</label>
                             <input
                                 type="password"
-                                placeholder="Minimal 6 karakter..."
+                                placeholder="Masukkan password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <div className="input-box">
+                        <div className="input-box" style={{ marginBottom: 12 }}>
                             <label>Konfirmasi Password</label>
                             <input
                                 type="password"
-                                placeholder="Ulangi password Anda..."
+                                placeholder="Ulangi password Anda"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
@@ -89,56 +100,12 @@ function Register() {
                         </div>
 
                         <button type="submit" className="btn" disabled={loading}>
-                            {loading ? "Mendaftar..." : "Daftar Sekarang →"}
+                            {loading ? "Mendaftar..." : "Register"}
                         </button>
                     </form>
 
                     <div className="bottom-text">
-                        Sudah punya akun?
-                        <Link to="/login">Masuk</Link>
-                    </div>
-
-                    <div style={{ textAlign: "center", marginTop: 16 }}>
-                        <Link to="/" style={{ color: "#94a3b8", fontSize: 13, textDecoration: "none" }}>
-                            ← Kembali ke Halaman Utama
-                        </Link>
-                    </div>
-                </div>
-
-                {/* RIGHT - Decorative */}
-                <div className="right">
-                    <div className="right-inner">
-                        <div className="right-badge">
-                            The Hotel
-                        </div>
-                        <h1>Bergabung Bersama Kami</h1>
-                        <p>
-                            Nikmati kemudahan reservasi hotel premium
-                            langsung dari genggaman Anda.
-                        </p>
-                        <div className="right-steps">
-                            <div className="right-step">
-                                <div className="step-number">1</div>
-                                <div className="step-info">
-                                    <h4>Buat Akun</h4>
-                                    <p>Daftar gratis dalam hitungan detik</p>
-                                </div>
-                            </div>
-                            <div className="right-step">
-                                <div className="step-number">2</div>
-                                <div className="step-info">
-                                    <h4>Pilih Kamar</h4>
-                                    <p>Browse berbagai pilihan kamar premium</p>
-                                </div>
-                            </div>
-                            <div className="right-step">
-                                <div className="step-number">3</div>
-                                <div className="step-info">
-                                    <h4>Reservasi & Nikmati</h4>
-                                    <p>Konfirmasi booking dan nikmati pengalaman terbaik</p>
-                                </div>
-                            </div>
-                        </div>
+                        Sudah punya akun? <Link to="/login" className="register-link">Login</Link>
                     </div>
                 </div>
             </div>
