@@ -30,3 +30,14 @@ export const registerUser = async (data) => {
 
     return response.data;
 };
+
+const authHeader = () => ({
+    headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+});
+
+export const updateProfile = async (data) => {
+    const response = await api.put("/me", data, authHeader());
+    return response.data;
+};

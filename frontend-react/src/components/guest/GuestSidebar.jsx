@@ -32,17 +32,6 @@ function GuestSidebar() {
                 </div>
             </div>
 
-            {/* User info */}
-            <div className="sidebar-user">
-                <div className="sidebar-user-avatar">{initials}</div>
-                <div className="sidebar-user-info">
-                    <div className="user-name">{user.username || "Tamu"}</div>
-                    <div className="user-role">
-                        {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Guest"}
-                    </div>
-                </div>
-            </div>
-
             {/* Navigation */}
             <nav className="sidebar-nav">
                 <div className="sidebar-section-label">Menu</div>
