@@ -1,19 +1,7 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function GuestSidebar() {
     const location = useLocation();
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-    };
-
-    const handleProfileClick = (e) => {
-        e.preventDefault();
-        window.dispatchEvent(new Event("open-profile-modal"));
-    };
 
     return (
         <aside className="guest-sidebar">
@@ -45,29 +33,11 @@ function GuestSidebar() {
                     Daftar Kamar
                 </Link>
                 <Link
-                    to="/fasilitas"
-                    className={`guest-nav-link ${location.pathname === "/fasilitas" ? "active" : ""}`}
-                >
-                    Fasilitas
-                </Link>
-                <Link
                     to="/review"
                     className={`guest-nav-link ${location.pathname === "/review" ? "active" : ""}`}
                 >
                     Review
                 </Link>
-                <button
-                    onClick={handleProfileClick}
-                    className="guest-nav-link-btn"
-                >
-                    Profile
-                </button>
-                <button
-                    onClick={handleLogout}
-                    className="guest-nav-link-btn logout-btn"
-                >
-                    Logout
-                </button>
             </nav>
         </aside>
     );
