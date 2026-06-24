@@ -5,7 +5,6 @@ function GuestSidebar() {
     const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const initials = (user.username || "G").charAt(0).toUpperCase();
 
     const navItems = [
         { to: "/dashboard",   icon: "🏠", label: "Dashboard"   },
