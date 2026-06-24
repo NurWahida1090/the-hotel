@@ -23,3 +23,15 @@ export const cancelReservation = async (id) => {
     const res = await api.delete(`/reservasi/${id}`, authHeader());
     return res.data;
 };
+
+// Admin: Get all reservations
+export const getAllReservations = async () => {
+    const res = await api.get("/reservasi", authHeader());
+    return res.data;
+};
+
+// Admin: Update status of a reservation
+export const updateReservationStatus = async (id, status) => {
+    const res = await api.put(`/reservasi/status/${id}`, { status_reservasi: status }, authHeader());
+    return res.data;
+};

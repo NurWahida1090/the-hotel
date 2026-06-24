@@ -507,7 +507,32 @@ def get_reservasi(
     db: Session = Depends(get_db),
     admin: User = Depends(admin_required)
 ):
-    return db.query(Reservasi).all()
+    data_reservasi = db.query(Reservasi).all()
+    reservasi = []
+    for item in data_reservasi:
+        user = db.query(User).filter(User.id_user == item.id_user).first()
+        kamar = db.query(Kamar).filter(Kamar.id_kamar == item.id_kamar).first()
+        
+        username = user.username if user else "Deleted User"
+        email = user.email if user else ""
+        nomor_kamar = kamar.nomor_kamar if kamar else "N/A"
+        tipe_kamar = kamar.tipe_kamar if kamar else "N/A"
+        harga = float(kamar.harga) if kamar else 0.0
+        
+        reservasi.append({
+            "id_reservasi": item.id_reservasi,
+            "id_user": item.id_user,
+            "id_kamar": item.id_kamar,
+            "username": username,
+            "email": email,
+            "nomor_kamar": nomor_kamar,
+            "tipe_kamar": tipe_kamar,
+            "harga": harga,
+            "tanggal_checkin": item.tanggal_checkin,
+            "tanggal_checkout": item.tanggal_checkout,
+            "status_reservasi": item.status_reservasi
+        })
+    return reservasi
 
 @app.post("/reservasi")
 def tambah_reservasi(
@@ -799,7 +824,7 @@ def delete_review(
             detail="Review tidak ditemukan"
         )
 
-    if review.id_user != current_user.id_user:
+    if review.id_user != current_user.id_user and current_user.role != "admin":
         raise HTTPException(
             status_code=403,
             detail="Bukan review anda"
