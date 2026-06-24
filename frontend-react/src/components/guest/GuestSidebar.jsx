@@ -37,7 +37,9 @@ function GuestSidebar() {
                 <div className="sidebar-user-avatar">{initials}</div>
                 <div className="sidebar-user-info">
                     <div className="user-name">{user.username || "Tamu"}</div>
-                    <div className="user-role">Guest</div>
+                    <div className="user-role">
+                        {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Guest"}
+                    </div>
                 </div>
             </div>
 
