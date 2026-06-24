@@ -106,7 +106,11 @@ function GuestTopbar() {
         <header className="guest-topbar">
             <div className="topbar-left">
                 <h2 className="topbar-title">
-                    {location.pathname === "/dashboard" ? "Selamat Datang di The Hotel" : meta.title}
+                    {location.pathname === "/dashboard" ? "Selamat Datang di The Hotel" :
+                     location.pathname === "/kamar" && location.search.includes("booking") ? "Booking Kamar" :
+                     location.pathname === "/kamar" ? "Daftar Kamar" :
+                     location.pathname === "/review" ? "Profile & Review" :
+                     meta.title}
                 </h2>
             </div>
 

@@ -1550,3 +1550,108 @@ html, body, #root {
     color: #94a3b8;
     cursor: not-allowed;
 }
+
+/* ============ BOOKING PAGE (TWO-COLUMN VIEW) ============ */
+.booking-page-container {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.booking-room-preview {
+    flex: 1;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-room-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.booking-room-preview-body {
+    padding: 24px;
+}
+
+.booking-room-preview-body h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+}
+
+.booking-room-desc {
+    font-size: 13.5px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.booking-form-card {
+    flex: 1.3;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.form-card-header {
+    margin-bottom: 24px;
+}
+
+.form-card-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 6px;
+}
+
+.form-card-header p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.btn-confirm-booking {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 24px;
+    outline: none;
+}
+
+.btn-confirm-booking:hover {
+    background: #1d4ed8;
+}
+
+.btn-confirm-booking:disabled {
+    background: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+    .booking-page-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .booking-room-preview,
+    .booking-form-card {
+        width: 100%;
+    }
+}

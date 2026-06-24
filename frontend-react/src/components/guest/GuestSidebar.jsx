@@ -44,12 +44,12 @@ function GuestSidebar() {
                 >
                     Daftar Kamar
                 </Link>
-                <button
-                    onClick={handleProfileClick}
-                    className="guest-nav-link-btn"
+                <Link
+                    to="/review"
+                    className={`guest-nav-link ${location.pathname === "/review" ? "active" : ""}`}
                 >
-                    Profile
-                </button>
+                    Profile & Review
+                </Link>
                 <button
                     onClick={handleLogout}
                     className="guest-nav-link-btn logout-btn"
