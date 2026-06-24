@@ -109,7 +109,10 @@ function GuestTopbar() {
                     {location.pathname === "/dashboard" ? "Selamat Datang di The Hotel" :
                      location.pathname === "/kamar" && location.search.includes("booking") ? "Booking Kamar" :
                      location.pathname === "/kamar" ? "Daftar Kamar" :
-                     location.pathname === "/review" ? "Profile & Review" :
+                     location.pathname === "/reservasi" && location.search.includes("detail") ? "Detail Reservasi" :
+                     location.pathname === "/reservasi" ? "Reservasi Saya" :
+                     location.pathname === "/review" ? "Review" :
+                     location.pathname === "/fasilitas" ? "Fasilitas" :
                      meta.title}
                 </h2>
             </div>

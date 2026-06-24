@@ -1655,3 +1655,13 @@ html, body, #root {
         width: 100%;
     }
 }
+
+/* ============ PAYMENT INFO BOX ============ */
+.payment-info-box {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

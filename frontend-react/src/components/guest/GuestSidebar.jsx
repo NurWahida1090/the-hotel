@@ -45,11 +45,23 @@ function GuestSidebar() {
                     Daftar Kamar
                 </Link>
                 <Link
+                    to="/fasilitas"
+                    className={`guest-nav-link ${location.pathname === "/fasilitas" ? "active" : ""}`}
+                >
+                    Fasilitas
+                </Link>
+                <Link
                     to="/review"
                     className={`guest-nav-link ${location.pathname === "/review" ? "active" : ""}`}
                 >
-                    Profile & Review
+                    Review
                 </Link>
+                <button
+                    onClick={handleProfileClick}
+                    className="guest-nav-link-btn"
+                >
+                    Profile
+                </button>
                 <button
                     onClick={handleLogout}
                     className="guest-nav-link-btn logout-btn"
