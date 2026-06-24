@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { FiEdit2, FiLogOut } from "react-icons/fi";
 import { updateProfile } from "../../services/authService";
 
 const pageMeta = {
@@ -115,10 +116,10 @@ function GuestTopbar() {
                     {dropdownOpen && (
                         <div className="profile-dropdown">
                             <button className="profile-dropdown-item" onClick={openEditProfile}>
-                                ✏️ Edit Profil
+                                <FiEdit2 style={{ fontSize: "14px" }} /> Edit Profil
                             </button>
                             <button className="profile-dropdown-item logout" onClick={handleLogout}>
-                                🚪 Logout
+                                <FiLogOut style={{ fontSize: "14px" }} /> Logout
                             </button>
                         </div>
                     )}

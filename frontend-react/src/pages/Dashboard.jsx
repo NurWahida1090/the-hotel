@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FiClipboard, FiClock, FiCheckCircle, FiStar, FiInbox } from "react-icons/fi";
 import GuestLayout from "../layouts/GuestLayout";
 import { getMyReservations } from "../services/reservationService";
 import { getMyReviews } from "../services/reviewService";
@@ -70,7 +71,7 @@ function Dashboard() {
                     </div>
                     <div className="welcome-action">
                         <Link to="/kamar" className="btn-primary-guest">
-                            🛏️ Cari Kamar
+                            Cari Kamar
                         </Link>
                     </div>
                 </div>
@@ -79,28 +80,28 @@ function Dashboard() {
             {/* Stat Cards */}
             <div className="stat-grid">
                 <div className="stat-card blue">
-                    <div className="stat-icon-wrap">📋</div>
+                    <div className="stat-icon-wrap"><FiClipboard /></div>
                     <div className="stat-info">
                         <div className="stat-value">{reservations.length}</div>
                         <div className="stat-label">Total Reservasi</div>
                     </div>
                 </div>
                 <div className="stat-card amber">
-                    <div className="stat-icon-wrap">⏳</div>
+                    <div className="stat-icon-wrap"><FiClock /></div>
                     <div className="stat-info">
                         <div className="stat-value">{activeRes}</div>
                         <div className="stat-label">Reservasi Aktif</div>
                     </div>
                 </div>
                 <div className="stat-card green">
-                    <div className="stat-icon-wrap">✅</div>
+                    <div className="stat-icon-wrap"><FiCheckCircle /></div>
                     <div className="stat-info">
                         <div className="stat-value">{totalSpend}</div>
                         <div className="stat-label">Selesai Menginap</div>
                     </div>
                 </div>
                 <div className="stat-card purple">
-                    <div className="stat-icon-wrap">⭐</div>
+                    <div className="stat-icon-wrap"><FiStar /></div>
                     <div className="stat-info">
                         <div className="stat-value">{reviews.length}</div>
                         <div className="stat-label">Review Ditulis</div>
@@ -124,7 +125,7 @@ function Dashboard() {
                         <div className="loading-spinner"><div className="spinner" /></div>
                     ) : reservations.length === 0 ? (
                         <div className="empty-state">
-                            <div className="empty-icon">📋</div>
+                            <div className="empty-icon"><FiInbox /></div>
                             <h3>Belum Ada Reservasi</h3>
                             <p>Anda belum memiliki reservasi kamar. Mulai pesan sekarang!</p>
                             <Link to="/kamar" className="btn-submit">Cari Kamar</Link>

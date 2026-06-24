@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FiHome, FiSearch, FiCalendar, FiStar, FiLogOut } from "react-icons/fi";
 
 function GuestSidebar() {
     const location = useLocation();
@@ -7,10 +8,10 @@ function GuestSidebar() {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
     const navItems = [
-        { to: "/dashboard",   icon: "🏠", label: "Dashboard"   },
-        { to: "/kamar",       icon: "🛏️", label: "Cari Kamar"  },
-        { to: "/reservasi",   icon: "📋", label: "Reservasi Saya" },
-        { to: "/review",      icon: "⭐", label: "Review Saya"  },
+        { to: "/dashboard",   icon: <FiHome />, label: "Dashboard"   },
+        { to: "/kamar",       icon: <FiSearch />, label: "Cari Kamar"  },
+        { to: "/reservasi",   icon: <FiCalendar />, label: "Reservasi Saya" },
+        { to: "/review",      icon: <FiStar />, label: "Review Saya"  },
     ];
 
     const handleLogout = () => {
@@ -49,7 +50,7 @@ function GuestSidebar() {
             {/* Logout */}
             <div className="sidebar-footer">
                 <button className="sidebar-logout" onClick={handleLogout}>
-                    <span className="nav-icon">🚪</span>
+                    <span className="nav-icon"><FiLogOut /></span>
                     <span>Logout</span>
                 </button>
             </div>
