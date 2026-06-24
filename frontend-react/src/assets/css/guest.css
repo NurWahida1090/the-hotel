@@ -22,7 +22,7 @@
     --warning: #f59e0b;
     --bg: #f0f4ff;
     --card-bg: #ffffff;
-    --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e3a8a 100%);
+    --sidebar-bg: #1a365d;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
     --text-light: #94a3b8;
@@ -107,24 +107,11 @@ html, body, #root {
     flex-shrink: 0;
 }
 
-.brand-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.brand-text span:first-child {
-    font-size: 18px;
+.brand-title-text {
+    font-size: 22px;
     font-weight: 700;
     color: white;
     letter-spacing: 0.5px;
-}
-
-.brand-text span:last-child {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 /* Sidebar user info */
@@ -190,33 +177,35 @@ html, body, #root {
     padding: 12px 12px 6px;
 }
 
-.guest-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 14px;
-    border-radius: var(--radius-sm);
-    color: rgba(255,255,255,0.7);
+.guest-nav-link,
+.guest-nav-link-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
     transition: var(--transition);
-    position: relative;
+    outline: none;
 }
 
-.guest-nav-link:hover {
-    background: rgba(255,255,255,0.08);
+.guest-nav-link:hover,
+.guest-nav-link-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
     color: white;
 }
 
 .guest-nav-link.active {
-    background: rgba(37,99,235,0.35);
-    color: white;
-    box-shadow: inset 3px 0 0 var(--primary-light);
-}
-
-.guest-nav-link.active .nav-icon {
-    color: var(--accent-light);
+    background: #2563eb !important;
+    color: white !important;
+    font-weight: 600;
+    box-shadow: none !important;
 }
 
 .nav-icon {
@@ -284,16 +273,11 @@ html, body, #root {
     z-index: 50;
 }
 
-.topbar-left .page-title {
-    font-size: 20px;
+.topbar-title {
+    font-size: 18px;
     font-weight: 700;
-    color: var(--text-primary);
-}
-
-.topbar-left .page-subtitle {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-top: 1px;
+    color: #1e3a8a;
+    margin: 0;
 }
 
 .topbar-right {
@@ -302,34 +286,35 @@ html, body, #root {
     gap: 16px;
 }
 
-.topbar-greeting {
-    text-align: right;
-}
-
-.topbar-greeting .greeting-text {
-    font-size: 13px;
-    color: var(--text-secondary);
-}
-
-.topbar-greeting .user-name-top {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.topbar-avatar {
-    width: 40px;
-    height: 40px;
+.topbar-avatar-img {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
+    object-fit: cover;
     border: 2px solid white;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.topbar-user-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.topbar-username {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.topbar-userrole {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 2px;
 }
 
 .topbar-profile-container {
@@ -492,88 +477,64 @@ html, body, #root {
 /* ============ WELCOME BANNER ============ */
 
 .welcome-banner {
-    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
-    border-radius: var(--radius-xl);
-    padding: 36px 40px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-lg);
+    padding: 48px;
     color: white;
     margin-bottom: 28px;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-xl);
-}
-
-.welcome-banner::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 220px;
-    height: 220px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 50%;
-}
-
-.welcome-banner::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    right: 80px;
-    width: 160px;
-    height: 160px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 50%;
+    box-shadow: var(--shadow-md);
 }
 
 .welcome-banner-inner {
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    max-width: 600px;
 }
 
 .welcome-text h2 {
-    font-size: 26px;
+    font-size: 36px;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .welcome-text p {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.9);
     font-size: 14px;
-    line-height: 1.7;
-    max-width: 500px;
+    line-height: 1.6;
 }
 
 .welcome-action {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex-shrink: 0;
+    margin-top: 8px;
 }
 
 .btn-primary-guest {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
+    padding: 10px 24px;
     background: white;
-    color: var(--primary);
-    border-radius: var(--radius-md);
+    color: #1e3a8a;
+    border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
     text-decoration: none;
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .btn-primary-guest:hover {
-    background: #f8fafc;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background: #f1f5f9;
+    transform: translateY(-1px);
 }
 
 /* ============ SECTIONS ============ */
@@ -693,7 +654,7 @@ html, body, #root {
 .room-price {
     font-size: 18px;
     font-weight: 700;
-    color: var(--primary-light);
+    color: #2563eb;
     margin-bottom: 16px;
 }
 
@@ -704,25 +665,24 @@ html, body, #root {
 }
 
 .btn-reserve {
-    display: block;
+    display: inline-block;
     text-align: center;
-    padding: 11px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    padding: 10px 24px;
+    background: #2563eb;
     color: white;
-    border-radius: var(--radius-md);
+    border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    align-self: flex-start;
 }
 
 .btn-reserve:hover {
-    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    background: #1d4ed8;
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(37,99,235,0.4);
 }
 
 .btn-reserve:disabled,
@@ -1270,4 +1230,86 @@ html, body, #root {
 @media (max-width: 480px) {
     .stat-grid { grid-template-columns: 1fr; }
     .room-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ REVIEWS SECTION ============ */
+.section-card-reviews {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.review-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-username {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e3a8a;
+}
+
+.review-rating {
+    display: flex;
+    margin-top: 4px;
+}
+
+.review-content p {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.star-filled {
+    color: #fbbf24;
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+.star-empty {
+    color: #d1d5db;
+    margin-right: 2px;
+    font-size: 14px;
 }

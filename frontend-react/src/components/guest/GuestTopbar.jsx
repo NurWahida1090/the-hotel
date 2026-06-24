@@ -56,6 +56,15 @@ function GuestTopbar() {
         setModalOpen(true);
     };
 
+    // Add event listener for sidebar profile trigger
+    useEffect(() => {
+        const handleOpenProfile = () => {
+            openEditProfile();
+        };
+        window.addEventListener("open-profile-modal", handleOpenProfile);
+        return () => window.removeEventListener("open-profile-modal", handleOpenProfile);
+    }, [user]);
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
@@ -96,8 +105,7 @@ function GuestTopbar() {
     return (
         <header className="guest-topbar">
             <div className="topbar-left">
-                <div className="page-title">{meta.title}</div>
-                <div className="page-subtitle">{meta.subtitle}</div>
+                <h2 className="topbar-title">Selamat Datang di The Hotel</h2>
             </div>
 
             <div className="topbar-right">
@@ -106,11 +114,16 @@ function GuestTopbar() {
                         className="topbar-profile-click" 
                         onClick={() => setDropdownOpen(!dropdownOpen)}
                     >
-                        <div className="topbar-greeting">
-                            <div className="greeting-text">{greeting},</div>
-                            <div className="user-name-top">{user.username || "Tamu"}</div>
+                        <img 
+                            className="topbar-avatar-img" 
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" 
+                            alt={user.username || "User"} 
+                            onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"; }}
+                        />
+                        <div className="topbar-user-info-text">
+                            <span className="topbar-username">{user.username || "Nur Wahida"}</span>
+                            <span className="topbar-userrole">User</span>
                         </div>
-                        <div className="topbar-avatar">{initials}</div>
                     </div>
 
                     {dropdownOpen && (
