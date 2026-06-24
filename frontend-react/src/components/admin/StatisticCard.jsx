@@ -1,9 +1,11 @@
+import { FiClipboard, FiDatabase, FiAward, FiStar } from "react-icons/fi";
+
 function StatisticCard({ statistik }) {
     const stats = [
-        { label: "Total Reservasi", value: statistik.total_reservasi || 0, icon: "📋" },
-        { label: "Kamar Tersedia", value: statistik.total_kamar || 0, icon: "🛏️" },
-        { label: "Fasilitas Hotel", value: statistik.total_fasilitas || 0, icon: "✨" },
-        { label: "Ulasan Tamu", value: statistik.total_review || 0, icon: "⭐" },
+        { label: "Total Reservasi", value: statistik.total_reservasi || 0, icon: <FiClipboard /> },
+        { label: "Kamar Tersedia", value: statistik.total_kamar || 0, icon: <FiDatabase /> },
+        { label: "Fasilitas Hotel", value: statistik.total_fasilitas || 0, icon: <FiAward /> },
+        { label: "Ulasan Tamu", value: statistik.total_review || 0, icon: <FiStar /> },
     ];
 
     return (
